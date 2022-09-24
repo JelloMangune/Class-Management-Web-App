@@ -3,21 +3,21 @@
 namespace Models;
 use \PDO;
 
-class Classes
+class TheClass
 {
     protected $id;
     protected $name;
     protected $description;
     protected $code;
-    protected $teacher_id;
+    protected $teacher_number;
     protected $connection;
 
-    public function __construct($name, $description, $code, $teacher_id)
+    public function __construct($name, $description, $code, $teacher_number)
 	{
 		$this->name = $name;
 		$this->description = $description;
         $this->code = $code;
-        $this->teacher_id = $teacher_id;
+        $this->teacher_number = $teacher_number;
 	}
 
     public function getId(){
@@ -37,7 +37,7 @@ class Classes
     }
 
     public function getTeacher(){
-        return $this->teacher_id;
+        return $this->teacher_number;
     }
 
     public function setConnection($connection)
@@ -48,14 +48,14 @@ class Classes
     public function save()
 	{
 		try {
-			$sql = "INSERT INTO classes SET name=:name, description=:description, code=:code, teacher_id=:teacher_id";
+			$sql = "INSERT INTO classes SET name=:name, description=:description, code=:code, teacher_number=:teacher_number";
 			$statement = $this->connection->prepare($sql);
 
 			return $statement->execute([
 				':name' => $this->getName(),
                 ':description' => $this->getDescription(),
                 ':code' => $this->getCode(),
-                ':teacher_id' => $this->getTeacher()
+                ':teacher_number' => $this->getTeacher()
 			]);
 
 		} catch (Exception $e) {
@@ -78,28 +78,28 @@ class Classes
 			$this->name = $row['name'];
 			$this->description = $row['description'];
 			$this->code = $row['code'];
-            $this->teacher_id = $row['teacher_id'];
+            $this->teacher_number = $row['teacher_number'];
 		} catch (Exception $e) {
 			error_log($e->getMessage());
 		}
 	}
 
-    public function updateClass($name, $description, $code, $teacher_id)
+    public function updateClass($name, $description, $code, $teacher_number)
 	{
 		try {
-			$sql = 'UPDATE classes SET name=?, description=?, code=?, teacher_id=? WHERE id=?';
+			$sql = 'UPDATE classes SET name=?, description=?, code=?, teacher_number=? WHERE id=?';
 			$statement = $this->connection->prepare($sql);
 			$statement->execute([
 				$name,
 				$description,
                 $code,
-                $teacher_id,
+                $teacher_number,
 				$this->getId()
 			]);
 			$this->name = $name;
             $this->description = $description;
             $this->code = $code;
-            $this->teacher_id = $teacher_id;
+            $this->teacher_number = $teacher_number;
 			
 		} catch (Exception $e) {
 			error_log($e->getMessage());

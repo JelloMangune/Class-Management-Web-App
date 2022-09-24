@@ -1,9 +1,9 @@
 <?php
 
 include ("../init.php");
-use Models\Classes;
+use Models\TheClass;
 
-$class = new Classes('', '', '', '');
+$class = new TheClass('', '', '', '');
 $class->setConnection($connection);
 $all_classes = $class->getAllClasses();
 var_dump($all_classes);

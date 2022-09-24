@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2022 at 09:47 AM
+-- Generation Time: Sep 24, 2022 at 09:39 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -32,33 +32,62 @@ CREATE TABLE `classes` (
   `name` varchar(220) NOT NULL,
   `description` varchar(220) NOT NULL,
   `code` varchar(100) NOT NULL,
-  `teacher_id` int(200) NOT NULL
+  `teacher_number` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `classes`
 --
 
-INSERT INTO `classes` (`id`, `name`, `description`, `code`, `teacher_id`) VALUES
-(2, 'Jello', 'Pogi', 'JPM15', 2),
-(3, 'Jello', 'Pogi', 'JPM15', 2),
-(4, 'Arnold', 'Sample', 'ANL', 2),
-(5, 'Jello', 'Pogi', 'JPM15', 2),
-(6, 'Jello', 'Pogi', 'JPM15', 2),
-(7, 'Jello', 'Pogi', 'JPM15', 2),
-(8, 'Jello', 'Pogi', 'JPM15', 2),
-(9, 'Jello', 'Pogi', 'JPM15', 2),
-(10, 'Jello', 'Pogi', 'JPM15', 2),
-(11, 'Jello', 'Pogi', 'JPM15', 2),
-(12, 'Jello', 'Pogi', 'JPM15', 2),
-(13, 'Jello', 'Pogi', 'JPM15', 2),
-(14, 'Jello', 'Pogi', 'JPM15', 2),
-(15, 'Jello', 'Pogi', 'JPM15', 2),
-(16, 'Jello', 'Pogi', 'JPM15', 2),
-(17, 'Jello', 'Pogi', 'JPM15', 2),
-(18, 'Jello', 'Pogi', 'JPM15', 2),
-(19, 'Jello', 'Pogi', 'JPM15', 2),
-(20, 'Jello', 'Pogi', 'JPM15', 2);
+INSERT INTO `classes` (`id`, `name`, `description`, `code`, `teacher_number`) VALUES
+(1, 'Professional Domain Course', 'Lorem Ipsum some description', 'PDC20', '10-10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `classes_rosters`
+--
+
+CREATE TABLE `classes_rosters` (
+  `id` int(200) NOT NULL,
+  `class_code` varchar(220) NOT NULL,
+  `student_number` varchar(220) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `enrolled_at` datetime(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `classes_rosters`
+--
+
+INSERT INTO `classes_rosters` (`id`, `class_code`, `student_number`, `is_active`, `enrolled_at`) VALUES
+(1, 'PDC20', '20-20-20', 1, '2022-09-24 09:34:36.000000'),
+(6, 'PDC20', '21-20-20', 1, '2022-09-24 09:35:16.000000');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `students`
+--
+
+CREATE TABLE `students` (
+  `id` int(200) NOT NULL,
+  `first_name` varchar(220) NOT NULL,
+  `last_name` varchar(220) NOT NULL,
+  `email` varchar(220) NOT NULL,
+  `contact` varchar(220) NOT NULL,
+  `program` varchar(220) NOT NULL,
+  `student_number` varchar(220) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `first_name`, `last_name`, `email`, `contact`, `program`, `student_number`) VALUES
+(1, 'Arnold', 'Lim', 'afdfa@gmail.com', '09123123', 'BSIT', '20-20-20'),
+(2, 'Jello', 'Mangune', 'sadsaa@gmail.com', '0912312123', 'BSIT', '21-21-21'),
+(3, 'John', 'Doe', 'sasafaa@gmail.com', '091213313', 'BSIT', '22-22-22');
 
 -- --------------------------------------------------------
 
@@ -80,12 +109,8 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `first_name`, `last_name`, `email`, `contact`, `employee_number`) VALUES
-(2, 'Karylle', 'Lopez', 'ckmalakas@gmail.com', '09123123', '20-20-20'),
-(3, 'Arnold', 'LIM', 'ANL', 'SADAS', 'ADSA'),
-(4, 'Karylle', 'Lopez', 'ckmalakas@gmail.com', '09123123', '20-20-20'),
-(5, 'Karylle', 'Lopez', 'ckmalakas@gmail.com', '09123123', '20-20-20'),
-(6, 'Karylle', 'Lopez', 'ckmalakas@gmail.com', '09123123', '20-20-20'),
-(7, 'Karylle', 'Lopez', 'ckmalakas@gmail.com', '09123123', '20-20-20');
+(1, 'Romack', 'Natividad', 'rNat@gmail.com', '09662653938', '10-10'),
+(2, 'Adriane', 'Castro', 'castro@gmail.com', '0966123538', '20-20');
 
 --
 -- Indexes for dumped tables
@@ -95,13 +120,29 @@ INSERT INTO `teachers` (`id`, `first_name`, `last_name`, `email`, `contact`, `em
 -- Indexes for table `classes`
 --
 ALTER TABLE `classes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`);
+
+--
+-- Indexes for table `classes_rosters`
+--
+ALTER TABLE `classes_rosters`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `student_number` (`student_number`);
+
+--
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `student_number` (`student_number`);
 
 --
 -- Indexes for table `teachers`
 --
 ALTER TABLE `teachers`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `employee_number` (`employee_number`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -111,13 +152,25 @@ ALTER TABLE `teachers`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `classes_rosters`
+--
+ALTER TABLE `classes_rosters`
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

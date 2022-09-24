@@ -4,7 +4,9 @@ include "vendor/autoload.php";
 include "config/database.php";
 
 use Models\Connection;
-use Models\Classes;
+use Models\TheClass;
+use Models\Teacher;
+use Models\Student;
 
 $connObj = new Connection($host, $database, $user, $password);
 $connection = $connObj->connect();

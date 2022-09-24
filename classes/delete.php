@@ -1,11 +1,11 @@
 <?php
 
 include "../init.php";
-use Models\Classes;
+use Models\TheClass;
 
-$class = new Classes('', '', '', '');
+$class = new TheClass('', '', '', '');
 $class->setConnection($connection);
-$class->getById(1);
+$class->getById(9);
 $class->deleteClass();
 
 var_dump($class);

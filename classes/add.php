@@ -1,9 +1,9 @@
 <?php
 
 include "../init.php";
-use Models\Classes;
+use Models\TheClass;
 
-$class = new Classes('Jello', 'Pogi', 'JPM15', '2');
+$class = new TheClass('Professional Domain Course', 'Lorem Ipsum some description', 'PDC20', '10-10');
 $class->setConnection($connection);
 $class->save();
-var_dump($add);
+var_dump($class);

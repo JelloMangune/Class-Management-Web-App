@@ -44,6 +44,8 @@
 #id
 #class_code
 #student_id
+#is_active
+#enrolled_at
 --
 +assignStudent(student_id, class_id)
 +removeStudent(student_id, class_id)

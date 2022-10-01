@@ -11,5 +11,7 @@
             "email": "mangune.jello@auf.edu.ph"
         }
     ],
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.4"
+    }
 }

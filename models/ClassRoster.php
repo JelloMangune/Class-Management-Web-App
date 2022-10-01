@@ -93,20 +93,22 @@ class ClassRoster
 		}
 	}
 
-    public function updateClassRoster($class_code, $student_number, $is_active)
+    public function updateClassRoster($class_code, $student_number, $is_active, $enrolled_at)
 	{
 		try {
-			$sql = 'UPDATE classes_rosters SET class_code=?, student_number=?, is_active=? WHERE id=?';
+			$sql = 'UPDATE classes_rosters SET class_code=?, student_number=?, is_active=?, enrolled_at=? WHERE id=?';
 			$statement = $this->connection->prepare($sql);
 			$statement->execute([
 				$class_code,
                 $student_number,
                 $is_active,
+				$enrolled_at,
                 $this->getId()
 			]);
 			$this->class_code = $class_code;
             $this->student_number = $student_number;
             $this->is_active = $is_active;
+			$this->enrolled_at = $enrolled_at;
 		} catch (Exception $e) {
 			error_log($e->getMessage());
 		}

@@ -68,6 +68,16 @@ class ComposerStaticInitccf17cc37b03471a0192b3f7e22d3b78
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'M' => 
+        array (
+            'Mustache' => 
+            array (
+                0 => __DIR__ . '/..' . '/mustache/mustache/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -82,6 +92,7 @@ class ComposerStaticInitccf17cc37b03471a0192b3f7e22d3b78
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitccf17cc37b03471a0192b3f7e22d3b78::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitccf17cc37b03471a0192b3f7e22d3b78::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitccf17cc37b03471a0192b3f7e22d3b78::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitccf17cc37b03471a0192b3f7e22d3b78::$classMap;
 
         }, null, ClassLoader::class);

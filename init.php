@@ -14,3 +14,4 @@ $connection = $connObj->connect();
 $mustache = new Mustache_Engine([
 	'loader' => new Mustache_Loader_FilesystemLoader('../templates')
 ]);
+

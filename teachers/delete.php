@@ -3,9 +3,17 @@
 include "../init.php";
 use Models\Teacher;
 
-$teacher = new Teacher('', '', '', '', '');
-$teacher->setConnection($connection);
-$teacher->getById(1);
-$teacher->deleteTeacher();
+$id = $_GET['id']??null;
 
-var_dump($teacher);
+try {
+    if(isset($_GET['id'])){
+        $teacher = new Teacher('', '', '', '', '');
+        $teacher->setConnection($connection);
+        $teacher->getById($id);
+        $teacher->deleteTeacher();
+        echo "<script>window.location.href='index.php?success=3';</script>";
+        exit();
+    }
+} catch (Exception $e) {
+    echo "<script>window.location.href='index.php?error=" . $e->getMessage()  . "';</script>";
+}

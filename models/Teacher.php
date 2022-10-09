@@ -91,6 +91,20 @@ class Teacher
 		}
 	}
 
+	public function getTeacher($id){
+		try {
+			$sql = 'SELECT * FROM teachers WHERE id=?';
+			$statement = $this->connection->prepare($sql);
+			$statement->execute([
+				$id
+			]);
+			$data = $statement->fetchAll();
+			return $data;
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
+
     public function updateTeacher($first_name, $last_name, $email, $contact, $employee_number)
 	{
 		try {

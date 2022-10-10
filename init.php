@@ -15,3 +15,16 @@ $mustache = new Mustache_Engine([
 	'loader' => new Mustache_Loader_FilesystemLoader('../templates')
 ]);
 
+$success = $_GET['success'] ?? null;
+$error = $_GET['error'] ?? null;
+
+if ($success==1){
+	$success  = "Successfully Added! x";
+}
+if ($success==2){
+	$success  = "Successfully Updated! x";
+}
+
+if ($success==3){
+	$success  = "Successfully Deleted! x";
+}

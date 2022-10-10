@@ -99,6 +99,20 @@ class Student
 		}
 	}
 
+	public function getStudent($id){
+		try {
+			$sql = 'SELECT * FROM students WHERE id=?';
+			$statement = $this->connection->prepare($sql);
+			$statement->execute([
+				$id
+			]);
+			$data = $statement->fetchAll();
+			return $data;
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
+
     public function getAllStudents()
 	{
 		try {

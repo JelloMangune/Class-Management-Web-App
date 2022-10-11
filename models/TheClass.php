@@ -84,6 +84,20 @@ class TheClass
 		}
 	}
 
+	public function getClass($id){
+		try {
+			$sql = 'SELECT c.id, c.name, c.description, c.code, c.teacher_number, CONCAT(t.first_name,\' \', t.last_name) AS teacher_name FROM classes AS c JOIN teachers AS t ON c.teacher_number = t.employee_number WHERE c.id=?';
+			$statement = $this->connection->prepare($sql);
+			$statement->execute([
+				$id
+			]);
+			$data = $statement->fetchAll();
+			return $data;
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
+
     public function updateClass($name, $description, $code, $teacher_number)
 	{
 		try {
@@ -122,7 +136,7 @@ class TheClass
     public function getAllClasses()
 	{
 		try {
-			$sql = 'SELECT * FROM classes';
+			$sql = 'SELECT c.id, c.name, c.description, c.code, c.teacher_number, CONCAT(t.first_name,\' \', t.last_name) AS teacher_name FROM classes AS c JOIN teachers AS t ON c.teacher_number = t.employee_number;';
 			$data = $this->connection->query($sql)->fetchAll();
 			return $data;
 		} catch (Exception $e) {

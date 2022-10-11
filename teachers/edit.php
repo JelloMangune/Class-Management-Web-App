@@ -28,4 +28,3 @@ try {
 } catch (Exception $e) {
     echo "<script>window.location.href='index.php?error=" . $e->getMessage()  . "';</script>";
 }
-

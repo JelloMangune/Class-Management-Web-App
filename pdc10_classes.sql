@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2022 at 09:39 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Oct 11, 2022 at 08:26 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,7 +40,11 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`id`, `name`, `description`, `code`, `teacher_number`) VALUES
-(1, 'Professional Domain Course', 'Lorem Ipsum some description', 'PDC20', '10-10');
+(18, 'Professional Domain Course 1', 'About PHP Programming', 'PDC10', '10-10-10'),
+(19, 'Advance Information Management', 'About Database Management', 'AIM10', '20-20-20'),
+(20, 'Object Oriented Programming', 'About  C# Programming', 'OOP10', '30-30-30'),
+(21, 'Networking and Communications', 'About Networking', 'NEC101', '40-40-40'),
+(22, 'Data Structures and Algorithms', 'About Python Programming', 'DSAL10', '50-50-50');
 
 -- --------------------------------------------------------
 
@@ -55,14 +59,6 @@ CREATE TABLE `classes_rosters` (
   `is_active` tinyint(1) NOT NULL,
   `enrolled_at` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `classes_rosters`
---
-
-INSERT INTO `classes_rosters` (`id`, `class_code`, `student_number`, `is_active`, `enrolled_at`) VALUES
-(1, 'PDC20', '20-20-20', 1, '2022-09-24 09:34:36.000000'),
-(6, 'PDC20', '21-20-20', 1, '2022-09-24 09:35:16.000000');
 
 -- --------------------------------------------------------
 
@@ -85,9 +81,11 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `first_name`, `last_name`, `email`, `contact`, `program`, `student_number`) VALUES
-(1, 'Arnold', 'Lim', 'afdfa@gmail.com', '09123123', 'BSIT', '20-20-20'),
-(2, 'Jello', 'Mangune', 'sadsaa@gmail.com', '0912312123', 'BSIT', '21-21-21'),
-(3, 'John', 'Doe', 'sasafaa@gmail.com', '091213313', 'BSIT', '22-22-22');
+(1, 'Jello', 'Mangune', 'mangune.jello@gmail.com', '09123456781', 'BSIT', '20-0730-992'),
+(2, 'Kane', 'Castillano', 'castillano.kane@gmail.com', '09123456782', 'BSIT', '18-0165-372'),
+(3, 'Micoh', 'Yabut', 'yabut.micoh@gmail.com', '09123456783', 'BSIT', '14-0072-264'),
+(4, 'Russelle', 'Bangsil', 'bangsil.russelle@gmail.com', '09123456784', 'BSIT', '14-0904-328'),
+(5, 'Karylle', 'Lopez', 'lopez.karylle@gmail.com', '09123456785', 'BSIT', '20-1068-435');
 
 -- --------------------------------------------------------
 
@@ -109,8 +107,11 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `first_name`, `last_name`, `email`, `contact`, `employee_number`) VALUES
-(1, 'Romack', 'Natividad', 'rNat@gmail.com', '09662653938', '10-10'),
-(2, 'Adriane', 'Castro', 'castro@gmail.com', '0966123538', '20-20');
+(1, 'Romack', 'Natividad', 'NatividadRomack@gmail.com', '12345678901', '10-10-10'),
+(2, 'Adriane', 'Castro', 'CastroAdriane@gmail.com', '12345678902', '20-20-20'),
+(3, 'Jonilo', 'Mababa', 'MababaJonilo@gmail.com', '12345678903', '30-30-30'),
+(4, 'Benedict', 'Guarin', 'GuarinBenedict@gmail.com', '12345678904', '40-40-40'),
+(5, 'James', 'Esquivel', 'EsquivelJames@gmail.com', '12345678905', '50-50-50');
 
 --
 -- Indexes for dumped tables
@@ -121,14 +122,16 @@ INSERT INTO `teachers` (`id`, `first_name`, `last_name`, `email`, `contact`, `em
 --
 ALTER TABLE `classes`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `code` (`code`);
+  ADD UNIQUE KEY `code` (`code`),
+  ADD KEY `teacher_number` (`teacher_number`);
 
 --
 -- Indexes for table `classes_rosters`
 --
 ALTER TABLE `classes_rosters`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `student_number` (`student_number`);
+  ADD UNIQUE KEY `student_number` (`student_number`),
+  ADD KEY `class_code` (`class_code`,`student_number`);
 
 --
 -- Indexes for table `students`
@@ -152,25 +155,42 @@ ALTER TABLE `teachers`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `classes_rosters`
 --
 ALTER TABLE `classes_rosters`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `classes`
+--
+ALTER TABLE `classes`
+  ADD CONSTRAINT `classes_ibfk_1` FOREIGN KEY (`teacher_number`) REFERENCES `teachers` (`employee_number`);
+
+--
+-- Constraints for table `classes_rosters`
+--
+ALTER TABLE `classes_rosters`
+  ADD CONSTRAINT `classes_rosters_ibfk_1` FOREIGN KEY (`student_number`) REFERENCES `students` (`student_number`),
+  ADD CONSTRAINT `classes_rosters_ibfk_2` FOREIGN KEY (`class_code`) REFERENCES `classes` (`code`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -13,4 +13,4 @@ $mustache = new Mustache_Engine([
 ]);
 
 $template = $mustache->loadTemplate('index');
-echo $template->render(compact('all_classes'));
+echo $template->render(compact('all_classes', 'success'));

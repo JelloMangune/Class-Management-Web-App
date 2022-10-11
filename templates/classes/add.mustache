@@ -143,45 +143,36 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            
-            <div class="col-lg-12 grid-margin stretch-card">
+            <div class="col-md-12 grid-margin stretch-card" style="margin-left:0%">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title"><span style="font-size:42px;">Classes</span></h4>
-                    <a href="../classes/add.php"><input type="button" class="btn btn-success btn-fw" value="Add Class"/></a>
-                    <span class="closebtn text-success" onclick="this.style.display='none';" style="margin-left:5px"> {{success}}</span>
-                    <div class="table-responsive">
-                      <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Code</th>
-                            <th scope="col">Teacher</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {{# all_classes}}
-                          <tr>
-                            <th scope="row">{{id}}</th>
-                            <td>{{name}}</td>
-                            <td>{{description}}</td>
-                            <td>{{code}}</td>
-                            <td>{{teacher_name}}</td>
-                            <td>
-                              <a class="text-primary" href="edit.php?id={{id}}">Edit</a>
-                            </td>
-                            <td>
-                              <a class="text-danger" onClick="javascript: return confirm('Please confirm deletion');" href="delete.php?id={{id}}">Delete</a>
-                            </td>
-                          </tr>
-                          {{/ all_classes}}
-                        </tbody>
-                      </table>
-                    </div>
+                    <h4 class="card-title" style="font-size:32px;">Add Class</h4>
+                    <form class="forms-sample" method="POST" action="../classes/add.php">
+                      <input type="hidden" id="id" name="id" value="id">
+                      <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                      </div>
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+                      </div>
+                      <div class="form-group">
+                        <label for="code">Code</label>
+                        <input type="text" class="form-control" id="code" name="code" placeholder="code">
+                      </div>
+                      <div class="form-group">
+                        <label for="teacher_number">Teacher</label>
+                        <select name="teacher_number" id="teacher_number">
+                          {{# all_teachers}}
+                            <option value="{{employee_number}}">{{first_name}} {{last_name}}</option>
+                          {{/ all_teachers}}
+                        </select>
+                      </div>
+                      <br>
+                      <button type="submit" class="btn btn-primary mr-2" name="submit_form">Submit</button>
+                      <a href="../classes/index.php"><input type="button" class="btn btn-dark" value="Cancel"/></a>
+                    </form>
                   </div>
                 </div>
               </div>

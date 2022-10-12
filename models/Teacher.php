@@ -105,6 +105,20 @@ class Teacher
 		}
 	}
 
+	public function getClasses(){
+		try {
+			$sql = 'SELECT * FROM classes WHERE teacher_number=?';
+			$statement = $this->connection->prepare($sql);
+			$statement->execute([
+				$this->employee_number
+			]);
+			$data = $statement->fetchAll();
+			return $data;
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
+
     public function updateTeacher($first_name, $last_name, $email, $contact, $employee_number)
 	{
 		try {

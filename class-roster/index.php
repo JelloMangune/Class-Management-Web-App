@@ -5,6 +5,11 @@ use Models\ClassRoster;
 
 $class_roster = new ClassRoster('', '');
 $class_roster->setConnection($connection);
-$all_classes_rosters = $class_roster->getAllClassesRosters();
-echo '<pre>';
-var_dump($all_classes_rosters);
+$all_classes_rosters = $class_roster->getAllClassesRosters();#var_dump($all_classes_rosters);
+
+$mustache = new Mustache_Engine([
+	'loader' => new Mustache_Loader_FilesystemLoader('../templates/class-roster')
+]);
+
+$template = $mustache->loadTemplate('index');
+echo $template->render(compact('all_classes_rosters', 'success'));

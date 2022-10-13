@@ -54,7 +54,7 @@
           <li class="nav-item nav-category">
             <span class="nav-link">Navigation</span>
           </li>
-          <li class="nav-item menu-items active">
+          <li class="nav-item menu-items">
             <a class="nav-link" href="../teachers/index.php">
               <span class="menu-icon">
                 <i class="mdi mdi-account-multiple"></i>
@@ -78,7 +78,7 @@
               <span class="menu-title">Classes</span>
             </a>
           </li>
-          <li class="nav-item menu-items">
+          <li class="nav-item menu-items active">
             <a class="nav-link" href="../class-roster/index.php">
               <span class="menu-icon">
                 <i class="mdi mdi-library-books"></i>
@@ -139,38 +139,47 @@
             </button>
           </div>
         </nav>
+
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <div class="col-md-12 grid-margin stretch-card" style="margin-left:0%">
+            
+            <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title" style="font-size:32px;">Add Teacher</h4>
-                    <form class="forms-sample" method="POST" action="../teachers/add.php">
-                      <input type="hidden" id="id" name="id" value="id">
-                      <div class="form-group">
-                        <label for="first_name">First Name</label>
-                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
-                      </div>
-                      <div class="form-group">
-                        <label for="last_name">Last Name</label>
-                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="First Name">
-                      </div>
-                      <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                      </div>
-                      <div class="form-group">
-                        <label for="contact">Contact Number</label>
-                        <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact">
-                      </div>
-                      <div class="form-group">
-                        <label for="employee_number">Employee Number</label>
-                        <input type="text" class="form-control" id="employee_number" name="employee_number" placeholder="Employee Number">
-                      </div>
-                      <button type="submit" class="btn btn-primary mr-2" name="submit_form">Submit</button>
-                      <a href="../teachers/index.php"><input type="button" class="btn btn-dark" value="Cancel"/></a>
-                    </form>
+                    <h4 class="card-title"><span style="font-size:42px;">Class Roster</span></h4>
+                    <a href="../classes/add.php"><input type="button" class="btn btn-success btn-fw" value="Add Class"/></a>
+                    <span class="closebtn text-success" onclick="this.style.display='none';" style="margin-left:5px"> {{success}}</span>
+                    <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Class Code</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Teacher</th>
+                            <th scope="col">Number of Students</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {{# all_classes_rosters}}
+                          <tr>
+                            <th scope="row">{{class_code}}</th>
+                            <td>{{name}}</td>
+                            <td>{{teacher_name}}</td>
+                            <td>{{number_of_students}}</td>
+                            <td>
+                              <a class="text-primary" href="edit.php?id={{id}}">Edit</a>
+                            </td>
+                            <td>
+                              <a class="text-danger" onClick="javascript: return confirm('Please confirm deletion');" href="delete.php?id={{id}}">Delete</a>
+                            </td>
+                          </tr>
+                          {{/ all_classes_rosters}}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>

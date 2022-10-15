@@ -19,13 +19,9 @@ try {
         exit();
     }
 } catch (Exception $e) {
-    header('Location: index.php?error=' . $e->getMessage());
+    echo "<script>window.location.href='index.php?error='" . $e->getMessage() . ";</script>";
     exit();
 }
 
-
-
-
-#var_dump($student);
 
 

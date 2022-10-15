@@ -65,7 +65,7 @@ class ClassRoster
     public function getAllClassesRosters()
 	{
 		try {
-			$sql = 'SELECT DISTINCT(cr.class_code), c.name, CONCAT(t.first_name,\' \',t.last_name) AS teacher_name, (SELECT COUNT(student_number) FROM classes_rosters WHERE class_code = cr.class_code) AS number_of_students FROM classes_rosters AS cr JOIN  classes AS c ON cr.class_code = c.code JOIN teachers AS t ON c.teacher_number = t.employee_number;			';
+			$sql = 'SELECT DISTINCT(c.code), c.name, CONCAT(t.first_name, \' \', t.last_name) AS teacher_name, (SELECT COUNT(student_number) FROM classes_rosters WHERE class_code = c.code) AS number_of_students FROM classes AS C JOIN teachers AS t ON c.teacher_number = t.employee_number;';
 			$data = $this->connection->query($sql)->fetchAll();
 			return $data;
 		} catch (Exception $e) {

@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Teachers</title>
+    <title>CMS Pro</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../assets/vendors/css/vendor.bundle.base.css">
@@ -26,13 +26,45 @@
         color: white;
         background-color: #000000; }
     </style>
+    <script>
+      function exportTableToExcel(tableID, filename = ''){
+        var downloadLink;
+        var dataType = 'application/vnd.ms-excel';
+        var tableSelect = document.getElementById(tableID);
+        var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+        
+        // Specify file name
+        filename = filename?filename+'.xls':'excel_data.xls';
+        
+        // Create download link element
+        downloadLink = document.createElement("a");
+        
+        document.body.appendChild(downloadLink);
+        
+        if(navigator.msSaveOrOpenBlob){
+            var blob = new Blob(['\ufeff', tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob( blob, filename);
+        }else{
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+        
+            // Setting the file name
+            downloadLink.download = filename;
+            
+            //triggering the function
+            downloadLink.click();
+        }
+    }
+    </script>
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a class="sidebar-brand brand-logo" href="#" style="color:white;">Teachers</a>
+          <a class="sidebar-brand brand-logo" href="#" style="color:white;">CMS Pro</a>
 
         </div>
         <ul class="nav">
@@ -153,7 +185,7 @@
                     <span class="closebtn text-success" onclick="this.style.display='none';" style="margin-left:5px"> {{success}}</span>
                     {{/class_details}}
                     <div class="table-responsive">
-                      <table class="table table-hover">
+                      <table class="table table-hover" id="tblData">
                         <thead>
                           <tr>
                             <th scope="col">Students</th>
@@ -173,6 +205,7 @@
                           {{/ class_students}}
                         </tbody>
                       </table>
+                      <button class="btn btn-info btn-rounded btn-fw" style="margin-top:30px" onclick="exportTableToExcel('tblData', '{{code}}_students')">Export Roster</button>
                     </div>
                   </div>
                 </div>

@@ -33,7 +33,6 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
           <a class="sidebar-brand brand-logo" href="#" style="color:white;">Teachers</a>
-
         </div>
         <ul class="nav">
           <li class="nav-item profile">
@@ -143,56 +142,31 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            
-            <div class="col-lg-12 grid-margin stretch-card">
+            <h4 class="card-title text-primary" style="font-size:32px;">{{student_name}}</h4>
+            <h4 class="card-title" style="font-size:15px;">EMPLOYEE NUMBER: <span class="text-primary"> {{student_number}} </span></h4>  
+            <div class="row">
+              {{# student_classes}}
+              <div class="col-xl-3 col-sm-6 grid-margin stretch-card" style="margin-top:20px;">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title"><span style="font-size:42px;">Students</span></h4>
-                    <a href="../students/add.php"><input type="button" class="btn btn-success btn-fw" value="Add Student"/></a>
-                    <span class="closebtn text-success" onclick="this.style.display='none';" style="margin-left:5px"> {{success}}</span>
-                    <div class="table-responsive">
-                      <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">First Name</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Contact</th>
-                            <th scope="col">Program</th>
-                            <th scope="col">Student Number</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {{# all_students}}
-                          <tr>
-                            <th scope="row">{{id}}</th>
-                            <td>{{first_name}}</td>
-                            <td>{{last_name}}</td>
-                            <td>{{email}}</td>
-                            <td>{{contact}}</td>
-                            <td>{{program}}</td>
-                            <td>{{student_number}}</td>
-                            <td>
-                              <a class="text-warning" href="classes.php?id={{id}}">View Classes</a>
-                            </td>
-                            <td>
-                              <a class="text-primary" href="edit.php?id={{id}}">Edit</a>
-                            </td>
-                            <td>
-                              <a class="text-danger" onClick="javascript: return confirm('Please confirm deletion');" href="delete.php?id={{id}}">Delete</a>
-                            </td>
-                          </tr>
-                          {{/ all_students}}
-                        </tbody>
-                      </table>
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                          <h3 class="mb-0">{{code}}</h3>
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="icon icon-box-success ">
+                          <span class="mdi mdi-arrow-top-right icon-item"></span>
+                        </div>
+                      </div>
                     </div>
+                    <h6 class="text-muted font-weight-normal">{{name}}</h6>
                   </div>
                 </div>
               </div>
+              {{/ student_classes}}
+            </div>
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->

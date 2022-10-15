@@ -124,6 +124,20 @@ class Student
 		}
 	}
 
+	public function getClasses(){
+		try {
+			$sql = 'SELECT c.name, c.code FROM students AS s JOIN classes_rosters AS cr ON cr.student_number = s.student_number JOIN classes AS c ON c.code = cr.class_code WHERE s.student_number=?;';
+			$statement = $this->connection->prepare($sql);
+			$statement->execute([
+				$this->student_number
+			]);
+			$data = $statement->fetchAll();
+			return $data;
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
+
     public function updateStudent($first_name, $last_name, $email, $contact, $program, $student_number)
 	{
 		try {

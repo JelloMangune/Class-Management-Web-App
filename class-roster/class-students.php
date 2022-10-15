@@ -10,6 +10,8 @@ $class_roster = new ClassRoster('', '');
 $class_roster->setConnection($connection);
 $class_students = $class_roster->getClassStudents($code);
 $class_details = $class_roster->getClass($code);
+#var_dump($class_details);
+#exit();
 
 $mustache = new Mustache_Engine([
 	'loader' => new Mustache_Loader_FilesystemLoader('../templates/class-roster')

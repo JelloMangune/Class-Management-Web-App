@@ -149,13 +149,6 @@
                   <div class="card-body">
                     {{#class_details}}
                     <h4 class="card-title"><span style="font-size:27px;">{{code}} - {{name}}</span></h4>
-                    {{#is_active}}
-                      <button type="button" class="btn btn-outline-success btn-sm" disabled="">Active</button>
-                    {{/is_active}}
-                    {{^is_active}}
-                      <button type="button" class="btn btn-outline-danger btn-sm" disabled="">Not Active</button>
-                    {{/is_active}}
-                    <br>
                     <a href="../class-roster/add.php?code={{code}}"><input type="button" class="btn btn-success btn-fw" style="margin-top:10px" value="Add Student to Class"/></a>
                     <span class="closebtn text-success" onclick="this.style.display='none';" style="margin-left:5px"> {{success}}</span>
                     {{/class_details}}

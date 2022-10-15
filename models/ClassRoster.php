@@ -65,7 +65,7 @@ class ClassRoster
     public function getAllClassesRosters()
 	{
 		try {
-			$sql = 'SELECT DISTINCT(c.code), c.name, CONCAT(t.first_name, \' \', t.last_name) AS teacher_name, (SELECT COUNT(student_number) FROM classes_rosters WHERE class_code = c.code) AS number_of_students FROM classes AS C JOIN teachers AS t ON c.teacher_number = t.employee_number;';
+			$sql = 'SELECT DISTINCT(c.code), c.name, CONCAT(t.first_name, \' \', t.last_name) AS teacher_name, (SELECT COUNT(student_number) FROM classes_rosters WHERE class_code = c.code)  AS number_of_students, (SELECT DISTINCT(is_active) FROM classes_rosters WHERE class_code = c.code) AS is_active FROM classes AS C JOIN teachers AS t ON c.teacher_number = t.employee_number;';
 			$data = $this->connection->query($sql)->fetchAll();
 			return $data;
 		} catch (Exception $e) {
@@ -76,12 +76,25 @@ class ClassRoster
 	public function getClassStudents($class_code)
 	{
 		try {
-			$sql = 'SELECT s.first_name, s.last_name, cr.enrolled_at FROM classes_rosters AS cr JOIN students AS s ON cr.student_number = s.student_number WHERE cr.class_code=:class_code';
+			$sql = 'SELECT cr.id, s.first_name, s.last_name, cr.enrolled_at FROM classes_rosters AS cr JOIN students AS s ON cr.student_number = s.student_number WHERE cr.class_code=:class_code';
 			$data = $this->connection->prepare($sql);
 			$data->execute([
 				':class_code' => $class_code
 			]);
 			return $data->fetchAll();
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
+
+	public function getClass($code){
+		try {
+			$sql = 'SELECT c.code, c.name, (SELECT DISTINCT(is_active) FROM classes_rosters WHERE cr.class_code = c.code) AS is_active FROM classes_rosters AS cr JOIN classes as c WHERE c.code =:code';
+			$data = $this->connection->prepare($sql);
+			$data->execute([
+				':code' => $code
+			]);
+			return $data->fetch();
 		} catch (Exception $e) {
 			error_log($e->getMessage());
 		}

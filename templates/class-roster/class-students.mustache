@@ -147,16 +147,24 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title"><span style="font-size:42px;">This Class</span></h4>
-                    <a href="../classes/add.php"><input type="button" class="btn btn-success btn-fw" value="Add Student to Class"/></a>
+                    {{#class_details}}
+                    <h4 class="card-title"><span style="font-size:27px;">{{code}} - {{name}}</span></h4>
+                    {{#is_active}}
+                      <button type="button" class="btn btn-outline-success btn-sm" disabled="">Active</button>
+                    {{/is_active}}
+                    {{^is_active}}
+                      <button type="button" class="btn btn-outline-danger btn-sm" disabled="">Not Active</button>
+                    {{/is_active}}
+                    <br>
+                    <a href="../class-roster/add.php?code={{code}}"><input type="button" class="btn btn-success btn-fw" style="margin-top:10px" value="Add Student to Class"/></a>
                     <span class="closebtn text-success" onclick="this.style.display='none';" style="margin-left:5px"> {{success}}</span>
+                    {{/class_details}}
                     <div class="table-responsive">
                       <table class="table table-hover">
                         <thead>
                           <tr>
                             <th scope="col">Students</th>
                             <th scope="col">Enrollment Date</th>
-                            <th scope="col"></th>
                             <th scope="col"></th>
                           </tr>
                         </thead>
@@ -165,9 +173,6 @@
                           <tr>
                             <th scope="row">{{first_name}} {{last_name}}</th>
                             <td>{{enrolled_at}}</td>
-                            <td>
-                              <a class="text-primary" href="edit.php?id={{id}}">Edit</a>
-                            </td>
                             <td>
                               <a class="text-danger" onClick="javascript: return confirm('Please confirm deletion');" href="delete.php?id={{id}}">Remove</a>
                             </td>

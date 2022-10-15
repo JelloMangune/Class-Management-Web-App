@@ -73,6 +73,20 @@ class ClassRoster
 		}
 	}
 
+	public function getClassStudents($class_code)
+	{
+		try {
+			$sql = 'SELECT s.first_name, s.last_name, cr.enrolled_at FROM classes_rosters AS cr JOIN students AS s ON cr.student_number = s.student_number WHERE cr.class_code=:class_code';
+			$data = $this->connection->prepare($sql);
+			$data->execute([
+				':class_code' => $class_code
+			]);
+			return $data->fetchAll();
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
+
     public function getById($id)
 	{
 		try {

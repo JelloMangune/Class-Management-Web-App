@@ -76,7 +76,7 @@ class ClassRoster
 	public function getClassStudents($class_code)
 	{
 		try {
-			$sql = 'SELECT cr.id, s.first_name, s.last_name, cr.enrolled_at FROM classes_rosters AS cr JOIN students AS s ON cr.student_number = s.student_number WHERE cr.class_code=:class_code';
+			$sql = 'SELECT cr.id, s.first_name, s.last_name, s.student_number, s.email, s.contact, s.program, cr.enrolled_at FROM classes_rosters AS cr JOIN students AS s ON cr.student_number = s.student_number WHERE cr.class_code=:class_code';
 			$data = $this->connection->prepare($sql);
 			$data->execute([
 				':class_code' => $class_code

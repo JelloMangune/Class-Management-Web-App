@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2022 at 05:22 PM
+-- Generation Time: Oct 16, 2022 at 10:45 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `classes` (
-  `id` int(200) NOT NULL,
-  `name` varchar(220) NOT NULL,
-  `description` varchar(220) NOT NULL,
+  `id` int(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `code` varchar(100) NOT NULL,
-  `teacher_number` varchar(200) NOT NULL
+  `teacher_number` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -53,7 +53,7 @@ INSERT INTO `classes` (`id`, `name`, `description`, `code`, `teacher_number`) VA
 --
 
 CREATE TABLE `classes_rosters` (
-  `id` int(11) NOT NULL,
+  `id` int(255) NOT NULL,
   `class_code` varchar(255) NOT NULL,
   `student_number` varchar(255) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
@@ -65,12 +65,13 @@ CREATE TABLE `classes_rosters` (
 --
 
 INSERT INTO `classes_rosters` (`id`, `class_code`, `student_number`, `is_active`, `enrolled_at`) VALUES
-(13, 'AIM10', '14-0904-328', 1, '0000-00-00'),
-(14, 'AIM10', '20-0730-992', 1, '0000-00-00'),
 (17, 'PDC10', '18-0165-372', 1, '2022-10-15'),
 (18, 'PDC10', '14-0904-328', 1, '2022-10-15'),
 (21, 'PDC10', '14-0072-264', 1, '2022-10-15'),
-(22, 'OOP10', '20-0730-992', 1, '2022-10-15');
+(22, 'OOP10', '20-0730-992', 1, '2022-10-15'),
+(24, 'OOP10', '20-1068-435', 1, '2022-10-15'),
+(25, 'AIM10', '18-0165-372', 1, '2022-10-16'),
+(26, 'AIM10', '14-0072-264', 1, '2022-10-16');
 
 -- --------------------------------------------------------
 
@@ -79,13 +80,13 @@ INSERT INTO `classes_rosters` (`id`, `class_code`, `student_number`, `is_active`
 --
 
 CREATE TABLE `students` (
-  `id` int(200) NOT NULL,
-  `first_name` varchar(220) NOT NULL,
-  `last_name` varchar(220) NOT NULL,
-  `email` varchar(220) NOT NULL,
-  `contact` varchar(220) NOT NULL,
-  `program` varchar(220) NOT NULL,
-  `student_number` varchar(220) NOT NULL
+  `id` int(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `contact` varchar(255) NOT NULL,
+  `program` varchar(255) NOT NULL,
+  `student_number` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -106,12 +107,12 @@ INSERT INTO `students` (`id`, `first_name`, `last_name`, `email`, `contact`, `pr
 --
 
 CREATE TABLE `teachers` (
-  `id` int(200) NOT NULL,
-  `first_name` varchar(220) NOT NULL,
-  `last_name` varchar(220) NOT NULL,
-  `email` varchar(220) NOT NULL,
-  `contact` varchar(220) NOT NULL,
-  `employee_number` varchar(220) NOT NULL
+  `id` int(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `contact` varchar(255) NOT NULL,
+  `employee_number` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -167,25 +168,25 @@ ALTER TABLE `teachers`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `classes_rosters`
 --
 ALTER TABLE `classes_rosters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

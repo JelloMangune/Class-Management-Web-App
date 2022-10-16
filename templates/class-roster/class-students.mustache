@@ -30,32 +30,28 @@
       function exportTableToExcel(tableID, filename = ''){
         var downloadLink;
         var dataType = 'application/vnd.ms-excel';
-        var tableSelect = document.getElementById(tableID);
+        var tble = document.getElementById('tblData'); 
+        var row = tble.rows;  
+        var i = 6; 
+        for (var j = 0; j < row.length; j++) {
+            row[j].deleteCell(i);
+        }
+        var tableSelect = tble;
         var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-        
-        // Specify file name
         filename = filename?filename+'.xls':'excel_data.xls';
-        
-        // Create download link element
         downloadLink = document.createElement("a");
-        
         document.body.appendChild(downloadLink);
-        
         if(navigator.msSaveOrOpenBlob){
             var blob = new Blob(['\ufeff', tableHTML], {
                 type: dataType
             });
             navigator.msSaveOrOpenBlob( blob, filename);
         }else{
-            // Create a link to the file
             downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-        
-            // Setting the file name
             downloadLink.download = filename;
-            
-            //triggering the function
             downloadLink.click();
         }
+        window.location.reload();
     }
     </script>
   </head>

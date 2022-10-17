@@ -1,54 +1,83 @@
-<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>150</x><y>0</y><w>210</w><h>230</h></coordinates><panel_attributes>Class
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>100</x><y>20</y><w>270</w><h>280</h></coordinates><panel_attributes>Class
 --
 #id
 #name
 #description
 #code
+#teacher_number
 --
-+createClass(name, desc, code)
-+updateClass(name, desc, code)
-+removeClass()
-+assignTeacher(teacher)
 +getName()
 +getDescription()
 +getCode()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>510</x><y>0</y><w>210</w><h>230</h></coordinates><panel_attributes>Teacher
++getTeacher()
++getById(id)
++getClass(id)
++getAllClasses()
++addClass()
++updateClass(name, description, code, teacher_number)
++deleteClass()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>510</x><y>0</y><w>390</w><h>370</h></coordinates><panel_attributes>Teacher
 --
 #id
-#name
+#first_name
+#last_name
 #email
-#contact_number
+#contact
+#employee_number
 --
-+addTeacher(name, email, contact_number)
-+updateTeacher(name, email, contact_number)
-+removeTeacher()
-+getName()
++getId()
++getFirstName()
++getLastName()
 +getEmail()
 +getContact()
++getEmployeeNumber()
++getById(id)
++getTeacher(id)
 +getClasses()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>520</x><y>320</y><w>210</w><h>220</h></coordinates><panel_attributes>Student
++getAllTeachers()
++addTeacher()
++updateTeacher(first_name, last_name, email, contact, employee_number)
++deleteTeacher()
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>510</x><y>390</y><w>310</w><h>350</h></coordinates><panel_attributes>Student
 --
 #id
 #name
 #email
-#contact_number
+#contact
+#program
+#student_number
 --
-+addStudent(name, email, contact_number)
-+updateStudent(name, email, contactNumber)
-+removeStudent()
-+getName()
++getId()
++getFirstName()
++getLastName()
 +getEmail()
 +getContact()
-+getClasses()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>330</y><w>210</w><h>220</h></coordinates><panel_attributes>Class Roster
++getProgram()
++getStudentNumber()
++getById(id)
++getStudent(id)
++getClasses
++getAllStudents()
++addStudent()
++updateStudent(first_name, last_name, email, contact, program, student_number)
++deleteStudent()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>90</x><y>370</y><w>290</w><h>310</h></coordinates><panel_attributes>Class Roster
 --
 #id
 #class_code
-#student_id
+#student_number
 #is_active
 #enrolled_at
 --
-+assignStudent(student_id, class_id)
-+removeStudent(student_id, class_id)
-+exportData(id)
++getId()
++getClassCode()
++getStudentNumber()
++isActive()
++isEnrolledAt()
++getById(id)
++getAllClassesRosters()
++getClassStudents()
 +getClass()
-+getStudent()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>200</y><w>190</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>12;15;170;10</additional_attributes></element><element><id>Relation</id><coordinates><x>310</x><y>200</y><w>40</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>20;130;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>380</y><w>200</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;180;30</additional_attributes></element></diagram>
++addStudentToRoster()
++deleteClassRoster()</panel_attributes><additional_attributes></additional_attributes></element></diagram>

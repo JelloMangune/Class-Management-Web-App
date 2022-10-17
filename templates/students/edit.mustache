@@ -151,27 +151,27 @@
                       {{# student}}
                       <input type="hidden" id="id" name="id" value="{{id}}">
                         <label for="first_name">First Name</label>
-                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" value="{{first_name}}" >
+                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" value="{{first_name}}" required>
                       </div>
                       <div class="form-group">
                         <label for="last_name">Last Name</label>
-                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="First Name" value="{{last_name}}" >
+                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" value="{{last_name}}" required>
                       </div>
                       <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{email}}" >
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{email}}" required>
                       </div>
                       <div class="form-group">
                         <label for="contact">Contact Number</label>
-                        <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact" value="{{contact}}" >
+                        <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact" value="{{contact}}" required>
                       </div>
                       <div class="form-group">
                         <label for="contact">CProgram</label>
-                        <input type="text" class="form-control" id="program" name="program" placeholder="Program" value="{{program}}" >
+                        <input type="text" class="form-control" id="program" name="program" placeholder="Program" value="{{program}}" required>
                       </div>
                       <div class="form-group">
                         <label for="student_number">Student Number</label>
-                        <input type="text" class="form-control" id="employee_number" name="student_number" placeholder="Student Number" value="{{student_number}}" >
+                        <input type="text" class="form-control" id="employee_number" name="student_number" placeholder="Student Number" value="{{student_number}}" required>
                       </div>
                       <button type="submit" class="btn btn-primary mr-2" name="submit_form">Update</button>
                       <a href="../students/index.php"><input type="button" class="btn btn-dark" value="Cancel"/></a>

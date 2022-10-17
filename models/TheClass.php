@@ -45,25 +45,7 @@ class TheClass
 		$this->connection = $connection;
 	}
 
-    public function save()
-	{
-		try {
-			$sql = "INSERT INTO classes SET name=:name, description=:description, code=:code, teacher_number=:teacher_number";
-			$statement = $this->connection->prepare($sql);
-
-			return $statement->execute([
-				':name' => $this->getName(),
-                ':description' => $this->getDescription(),
-                ':code' => $this->getCode(),
-                ':teacher_number' => $this->getTeacher()
-			]);
-
-		} catch (Exception $e) {
-			error_log($e->getMessage());
-		}
-	}
-
-    public function getById($id)
+	public function getById($id)
 	{
 		try {
 			$sql = 'SELECT * FROM classes WHERE id=:id';
@@ -93,6 +75,35 @@ class TheClass
 			]);
 			$data = $statement->fetchAll();
 			return $data;
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
+
+	public function getAllClasses()
+	{
+		try {
+			$sql = 'SELECT c.id, c.name, c.description, c.code, c.teacher_number, CONCAT(t.first_name,\' \', t.last_name) AS teacher_name FROM classes AS c JOIN teachers AS t ON c.teacher_number = t.employee_number;';
+			$data = $this->connection->query($sql)->fetchAll();
+			return $data;
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
+
+    public function addClass()
+	{
+		try {
+			$sql = "INSERT INTO classes SET name=:name, description=:description, code=:code, teacher_number=:teacher_number";
+			$statement = $this->connection->prepare($sql);
+
+			return $statement->execute([
+				':name' => $this->getName(),
+                ':description' => $this->getDescription(),
+                ':code' => $this->getCode(),
+                ':teacher_number' => $this->getTeacher()
+			]);
+
 		} catch (Exception $e) {
 			error_log($e->getMessage());
 		}
@@ -133,14 +144,4 @@ class TheClass
 		}
 	}
 
-    public function getAllClasses()
-	{
-		try {
-			$sql = 'SELECT c.id, c.name, c.description, c.code, c.teacher_number, CONCAT(t.first_name,\' \', t.last_name) AS teacher_name FROM classes AS c JOIN teachers AS t ON c.teacher_number = t.employee_number;';
-			$data = $this->connection->query($sql)->fetchAll();
-			return $data;
-		} catch (Exception $e) {
-			error_log($e->getMessage());
-		}
-	}
 }

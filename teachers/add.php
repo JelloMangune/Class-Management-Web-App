@@ -15,7 +15,7 @@ try {
     if(isset($_POST['id'])){
         $teacher = new Teacher($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['contact'], $_POST['employee_number']);
         $teacher->setConnection($connection);
-        $teacher->save(); 
+        $teacher->addTeacher(); 
         echo "<script>window.location.href='index.php?success=1';</script>";
         exit();
     }

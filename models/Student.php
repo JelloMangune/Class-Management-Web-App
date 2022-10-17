@@ -56,27 +56,7 @@ class Student
 		$this->connection = $connection;
 	}
 
-    public function save()
-	{
-		try {
-			$sql = "INSERT INTO students SET first_name=?, last_name=?, email=?, contact=?, program=?, student_number=?";
-			$statement = $this->connection->prepare($sql);
-
-			return $statement->execute([
-				$this->getFirstName(),
-                $this->getLastName(),
-                $this->getEmail(),
-                $this->getContact(),
-                $this->getProgram(),
-                $this->getStudentNumber()
-			]);
-
-		} catch (Exception $e) {
-			error_log($e->getMessage());
-		}
-	}
-
-    public function getById($id)
+	public function getById($id)
 	{
 		try {
 			$sql = 'SELECT * FROM students WHERE id=:id';
@@ -113,6 +93,20 @@ class Student
 		}
 	}
 
+	public function getClasses(){
+		try {
+			$sql = 'SELECT c.name, c.code FROM students AS s JOIN classes_rosters AS cr ON cr.student_number = s.student_number JOIN classes AS c ON c.code = cr.class_code WHERE s.student_number=?;';
+			$statement = $this->connection->prepare($sql);
+			$statement->execute([
+				$this->student_number
+			]);
+			$data = $statement->fetchAll();
+			return $data;
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
+
     public function getAllStudents()
 	{
 		try {
@@ -124,15 +118,21 @@ class Student
 		}
 	}
 
-	public function getClasses(){
+    public function addStudent()
+	{
 		try {
-			$sql = 'SELECT c.name, c.code FROM students AS s JOIN classes_rosters AS cr ON cr.student_number = s.student_number JOIN classes AS c ON c.code = cr.class_code WHERE s.student_number=?;';
+			$sql = "INSERT INTO students SET first_name=?, last_name=?, email=?, contact=?, program=?, student_number=?";
 			$statement = $this->connection->prepare($sql);
-			$statement->execute([
-				$this->student_number
+
+			return $statement->execute([
+				$this->getFirstName(),
+                $this->getLastName(),
+                $this->getEmail(),
+                $this->getContact(),
+                $this->getProgram(),
+                $this->getStudentNumber()
 			]);
-			$data = $statement->fetchAll();
-			return $data;
+
 		} catch (Exception $e) {
 			error_log($e->getMessage());
 		}

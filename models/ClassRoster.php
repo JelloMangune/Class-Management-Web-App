@@ -44,25 +44,27 @@ class ClassRoster
 		$this->connection = $connection;
 	}
 
-    public function save()
+	public function getById($id)
 	{
 		try {
-			$sql = "INSERT INTO classes_rosters SET class_code=?, student_number=?, is_active=?, enrolled_at=?";
+			$sql = 'SELECT * FROM classes_rosters WHERE id=:id';
 			$statement = $this->connection->prepare($sql);
-
-			return $statement->execute([
-				$this->getClassCode(),
-                $this->getStudentNumber(),
-                $this->isActive(),
-                $this->isEnrolledAt()
+			$statement->execute([
+				':id' => $id
 			]);
 
+			$row = $statement->fetch();
+			$this->id = $row['id'];
+			$this->class_code = $row['class_code'];
+            $this->student_number = $row['student_number'];
+            $this->is_active = $row['is_active'];
+            $this->enrolled_at = $row['enrolled_at'];
 		} catch (Exception $e) {
 			error_log($e->getMessage());
 		}
 	}
 
-    public function getAllClassesRosters()
+	public function getAllClassesRosters()
 	{
 		try {
 			$sql = 'SELECT DISTINCT(c.code), c.name, CONCAT(t.first_name, \' \', t.last_name) AS teacher_name, (SELECT COUNT(student_number) FROM classes_rosters WHERE class_code = c.code)  AS number_of_students, (SELECT DISTINCT(is_active) FROM classes_rosters WHERE class_code = c.code) AS is_active FROM classes AS C JOIN teachers AS t ON c.teacher_number = t.employee_number;';
@@ -100,21 +102,19 @@ class ClassRoster
 		}
 	}
 
-    public function getById($id)
+    public function addStudentToRoster()
 	{
 		try {
-			$sql = 'SELECT * FROM classes_rosters WHERE id=:id';
+			$sql = "INSERT INTO classes_rosters SET class_code=?, student_number=?, is_active=?, enrolled_at=?";
 			$statement = $this->connection->prepare($sql);
-			$statement->execute([
-				':id' => $id
+
+			return $statement->execute([
+				$this->getClassCode(),
+                $this->getStudentNumber(),
+                $this->isActive(),
+                $this->isEnrolledAt()
 			]);
 
-			$row = $statement->fetch();
-			$this->id = $row['id'];
-			$this->class_code = $row['class_code'];
-            $this->student_number = $row['student_number'];
-            $this->is_active = $row['is_active'];
-            $this->enrolled_at = $row['enrolled_at'];
 		} catch (Exception $e) {
 			error_log($e->getMessage());
 		}

@@ -22,7 +22,7 @@ try {
     if(isset($_POST['student_number'])){
         $class_roster = new ClassRoster($_POST['code'], $_POST['student_number']);
         $class_roster->setConnection($connection);
-        $class_roster->save();
+        $class_roster->addStudentToRoster();
         echo "<script>window.location.href='index.php?success=1';</script>";
         exit();
     }

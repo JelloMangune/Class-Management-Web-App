@@ -19,7 +19,7 @@ try {
     if(isset($_POST['id'])){
         $class = new TheClass($_POST['name'],$_POST['description'],$_POST['code'],$_POST['teacher_number']);
         $class->setConnection($connection);
-        $class->save();
+        $class->addClass();
         echo "<script>window.location.href='index.php?success=1';</script>";
         exit();
     }

@@ -50,26 +50,7 @@ class Teacher
 		$this->connection = $connection;
 	}
 
-    public function save()
-	{
-		try {
-			$sql = "INSERT INTO teachers SET first_name=?, last_name=?, email=?, contact=?, employee_number=?";
-			$statement = $this->connection->prepare($sql);
-
-			return $statement->execute([
-				$this->getFirstName(),
-                $this->getLastName(),
-                $this->getEmail(),
-                $this->getContact(),
-                $this->getEmployeeNumber()
-			]);
-
-		} catch (Exception $e) {
-			error_log($e->getMessage());
-		}
-	}
-
-    public function getById($id)
+	public function getById($id)
 	{
 		try {
 			$sql = 'SELECT * FROM teachers WHERE id=:id';
@@ -119,6 +100,36 @@ class Teacher
 		}
 	}
 
+	public function getAllTeachers()
+	{
+		try {
+			$sql = 'SELECT * FROM teachers';
+			$data = $this->connection->query($sql)->fetchAll();
+			return $data;
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
+
+    public function addTeacher()
+	{
+		try {
+			$sql = "INSERT INTO teachers SET first_name=?, last_name=?, email=?, contact=?, employee_number=?";
+			$statement = $this->connection->prepare($sql);
+
+			return $statement->execute([
+				$this->getFirstName(),
+                $this->getLastName(),
+                $this->getEmail(),
+                $this->getContact(),
+                $this->getEmployeeNumber()
+			]);
+
+		} catch (Exception $e) {
+			error_log($e->getMessage());
+		}
+	}
+
     public function updateTeacher($first_name, $last_name, $email, $contact, $employee_number)
 	{
 		try {
@@ -151,17 +162,6 @@ class Teacher
 			$statement->execute([
 				$this->getId()
 			]);
-		} catch (Exception $e) {
-			error_log($e->getMessage());
-		}
-	}
-
-    public function getAllTeachers()
-	{
-		try {
-			$sql = 'SELECT * FROM teachers';
-			$data = $this->connection->query($sql)->fetchAll();
-			return $data;
 		} catch (Exception $e) {
 			error_log($e->getMessage());
 		}

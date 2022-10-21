@@ -91,7 +91,7 @@ class ClassRoster
 
 	public function getClass($code){
 		try {
-			$sql = 'SELECT c.code, c.name, (SELECT DISTINCT(is_active) FROM classes_rosters WHERE cr.class_code = c.code) AS is_active FROM classes_rosters AS cr JOIN classes as c WHERE c.code =:code';
+			$sql = 'SELECT * FROM classes WHERE code =:code';
 			$data = $this->connection->prepare($sql);
 			$data->execute([
 				':code' => $code
@@ -105,14 +105,16 @@ class ClassRoster
     public function addStudentToRoster()
 	{
 		try {
-			$sql = "INSERT INTO classes_rosters SET class_code=?, student_number=?, is_active=?, enrolled_at=?";
+			$sql = "INSERT INTO classes_rosters (class_code, student_number, is_active, enrolled_at) SELECT ?,?,?,? WHERE NOT EXISTS (Select * FROM classes_rosters WHERE class_code=? AND student_number=?) LIMIT 1;";
 			$statement = $this->connection->prepare($sql);
 
 			return $statement->execute([
 				$this->getClassCode(),
                 $this->getStudentNumber(),
                 $this->isActive(),
-                $this->isEnrolledAt()
+                $this->isEnrolledAt(),
+				$this->getClassCode(),
+                $this->getStudentNumber(),
 			]);
 
 		} catch (Exception $e) {

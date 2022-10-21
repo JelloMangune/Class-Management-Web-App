@@ -1,83 +1,88 @@
-<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>100</x><y>20</y><w>270</w><h>280</h></coordinates><panel_attributes>Class
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>88</x><y>20</y><w>290</w><h>310</h></coordinates><panel_attributes>Class
 --
-#id
-#name
-#description
-#code
-#teacher_number
+#id: int
+#name: string
+#description: string
+#code: string
+#teacher_number: string
 --
-+getName()
-+getDescription()
-+getCode()
-+getTeacher()
-+getById(id)
-+getClass(id)
-+getAllClasses()
-+addClass()
-+updateClass(name, description, code, teacher_number)
-+deleteClass()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>510</x><y>0</y><w>390</w><h>370</h></coordinates><panel_attributes>Teacher
++getId(): int
++getName(): string
++getDescription(): string
++getCode(): string
++getTeacher(): string
++getById(id: int): void
++getClass(id: int): string
++getAllClasses(): string
++addClass(): void
++updateClass(name: string, description: string,
+code: string, teacher_number: string): void
++deleteClass(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>468</x><y>10</y><w>350</w><h>370</h></coordinates><panel_attributes>Teacher
 --
-#id
-#first_name
-#last_name
-#email
-#contact
-#employee_number
+#id: int
+#first_name: string
+#last_name: string
+#email: string
+#contact: string
+#employee_number: string
 --
-+getId()
-+getFirstName()
-+getLastName()
-+getEmail()
-+getContact()
-+getEmployeeNumber()
-+getById(id)
-+getTeacher(id)
-+getClasses()
-+getAllTeachers()
-+addTeacher()
-+updateTeacher(first_name, last_name, email, contact, employee_number)
-+deleteTeacher()
++getId(): int
++getFirstName(): string
++getLastName(): string
++getEmail(): string
++getContact(): string
++getEmployeeNumber(): string
++getById(id: int): void
++getTeacher(id: int): string
++getClasses(): string
++getAllTeachers(): string
++addTeacher(): void
++updateTeacher(first_name: string, last_name: string, 
+email: string, contact: string, employee_number: string): void
++deleteTeacher(): void
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>510</x><y>390</y><w>310</w><h>350</h></coordinates><panel_attributes>Student
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>408</x><y>400</y><w>310</w><h>350</h></coordinates><panel_attributes>Student
 --
-#id
-#name
-#email
-#contact
-#program
-#student_number
+#id: int
+#name: string
+#email: string
+#contact: string
+#program: string
+#student_number: string
 --
-+getId()
-+getFirstName()
-+getLastName()
-+getEmail()
-+getContact()
-+getProgram()
-+getStudentNumber()
-+getById(id)
-+getStudent(id)
-+getClasses
-+getAllStudents()
-+addStudent()
-+updateStudent(first_name, last_name, email, contact, program, student_number)
-+deleteStudent()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>90</x><y>370</y><w>290</w><h>310</h></coordinates><panel_attributes>Class Roster
++getId(): int
++getFirstName(): string
++getLastName(): string
++getEmail(): string
++getContact(): string
++getProgram(): string
++getStudentNumber(): string
++getById(id): void
++getStudent(id: int): string
++getClasses(): string
++getAllStudents(): string
++addStudent(): void
++updateStudent(first_name: string, last_name: string, 
+email: string, contact: string, program: string, 
+student_number: string): void
++deleteStudent():void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>38</x><y>370</y><w>290</w><h>310</h></coordinates><panel_attributes>Class Roster
 --
-#id
-#class_code
-#student_number
-#is_active
-#enrolled_at
+#id: id
+#class_code: string
+#student_number: string
+#is_active: bool
+#enrolled_at: date
 --
-+getId()
-+getClassCode()
-+getStudentNumber()
-+isActive()
-+isEnrolledAt()
-+getById(id)
-+getAllClassesRosters()
-+getClassStudents()
-+getClass()
-+addStudentToRoster()
-+deleteClassRoster()</panel_attributes><additional_attributes></additional_attributes></element></diagram>
++getId(): int
++getClassCode(): string
++getStudentNumber(): string
++isActive(): bool
++isEnrolledAt(): date
++getById(id: int): void
++getAllClassesRosters(): string
++getClassStudents(): string
++getClass(): string
++addStudentToRoster(): void
++deleteClassRoster(): void</panel_attributes><additional_attributes></additional_attributes></element></diagram>

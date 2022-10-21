@@ -151,9 +151,9 @@
                       <input type="hidden" id="code" name="code" value="{{code}}">
                       <div class="form-group">
                         <label for="student_number">Student</label>
-                        <select name="student_number" id="student_number">
+                        <select class="form-control" name="student_number" id="student_number" style="color:white;">
                           {{# all_students}}
-                            <option value="{{student_number}}">{{first_name}} {{last_name}}</option>
+                            <option value="{{student_number}}" style="color:white;">{{first_name}} {{last_name}}</option>
                           {{/ all_students}}
                         </select>
                       </div>

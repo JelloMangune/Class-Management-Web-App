@@ -10,7 +10,7 @@ $class_roster = new ClassRoster('', '');
 $class_roster->setConnection($connection);
 $class_students = $class_roster->getClassStudents($code);
 $class_details = $class_roster->getClass($code);
-#var_dump($class_details);
+#var_dump($class_details['name']);
 #exit();
 
 $mustache = new Mustache_Engine([

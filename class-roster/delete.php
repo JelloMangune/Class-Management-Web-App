@@ -12,7 +12,7 @@ try {
         $class_roster->getById($id);
         $class_roster->deleteClassRoster();
         $code = $class_roster->getClassCode();
-        echo "<script>window.location.href='class-students.php?success=3&code=" . $code . "';</script>";
+        echo "<script>window.location.href='edit.php?success=3&code=" . $code . "';</script>";
         exit();
     }
 } catch (Exception $e) {

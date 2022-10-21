@@ -23,7 +23,7 @@ try {
         $class_roster = new ClassRoster($_POST['code'], $_POST['student_number']);
         $class_roster->setConnection($connection);
         $class_roster->addStudentToRoster();
-        echo "<script>window.location.href='index.php?success=1';</script>";
+        echo "<script>window.location.href='edit.php?success=1&code=" . $_POST['code'] . "';</script>";
         exit();
     }
 } catch (Exception $e) {
